@@ -1,4 +1,4 @@
-# Civically Layouts
+# Civically Menus
 
 This is a Discourse plugin built for [Civically](https://civically.io).
 
