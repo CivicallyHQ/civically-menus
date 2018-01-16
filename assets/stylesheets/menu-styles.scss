@@ -1,0 +1,34 @@
+.d-header .contents .title {
+  .logo {
+    width: 40px;
+    display: inline-block;
+  }
+
+  a {
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .p-text {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+  }
+}
+
+.extra-info h1 {
+  margin: 7px 10px 0 0;
+  font-size: 1.5em;
+  line-height: 1.3em;
+  font-weight: normal;
+
+  span {
+    vertical-align: top;
+    margin-right: 10px;
+  }
+
+  .topic-link {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
