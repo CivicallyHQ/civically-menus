@@ -63,7 +63,7 @@ export default {
 
             if (isAppStore) title = I18n.t('app.store.label');
 
-            if (isLanding) title = `<a href='/start' class='p-text medium p-link'>${I18n.t('landing.title')}</a>`;
+            if (isLanding) title = `<a href='/start' class='p-text start'>${I18n.t('landing.title')}</a>`;
           }
 
           return title;
