@@ -1,7 +1,9 @@
 .d-header .contents .title {
-  .logo {
-    width: 40px;
-    display: inline-block;
+  margin-top: 4px;
+
+  #site-logo {
+    margin-right: 0;
+    max-height: 34px;
   }
 
   a {
@@ -15,14 +17,10 @@
     margin: 0 5px;
   }
 
-  img {
-    margin-right: 0;
-  }
-
   .start {
     font-size: 1.5em;
     color: $tertiary;
-    margin-top: 5px;
+    margin-top: 3px;
     font-weight: 100;
     font-family: Montserrat, sans-serif;
     letter-spacing: 1.5px;
