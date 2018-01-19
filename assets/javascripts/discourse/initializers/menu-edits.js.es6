@@ -1,6 +1,5 @@
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import { applyDecorators } from 'discourse/widgets/widget';
-import { avatarImg } from 'discourse/widgets/post';
 import RawHtml from 'discourse/widgets/raw-html';
 
 export default {
@@ -9,31 +8,6 @@ export default {
 
     withPluginApi('0.5', api => {
       api.reopenWidget('hamburger-menu', {
-        generalLinks() {
-          const { siteSettings } = this;
-          const flatten = array => [].concat.apply([], array);
-          const links = [];
-
-          if (siteSettings.enable_badges) {
-            links.push({ route: 'badges', className: 'badge-link', label: 'badges.title' });
-          }
-
-          if (this.showUserDirectory()) {
-            links.push({ route: 'users', className: 'user-directory-link', label: 'directory.title' });
-          }
-
-          if (siteSettings.enable_group_directory) {
-            links.push({ route: 'groups', className: 'groups-link', label: 'groups.index.title' });
-          }
-
-          if (siteSettings.tagging_enabled) {
-            links.push({ route: 'tags', label: 'tagging.tags' });
-          }
-
-          const extraLinks = flatten(applyDecorators(this, 'generalLinks', this.attrs, this.state));
-          return links.concat(extraLinks).map(l => this.attach('link', l));
-        },
-
         panelContents() {
           const results = [];
           const flatten = array => [].concat.apply([], array);
@@ -86,35 +60,6 @@ export default {
           }
 
           return results;
-        }
-      });
-
-      api.reopenWidget('header-notifications', {
-        html(attrs) {
-          const { currentUser } = this;
-
-          const contents = [avatarImg(this.settings.avatarSize, {
-            template: currentUser.get('avatar_template'),
-            username: currentUser.get('username')
-          })];
-
-          const unreadNotifications = currentUser.get('unread_notifications');
-          if (!!unreadNotifications) {
-            contents.push(this.attach('link', { action: attrs.action,
-                                                className: 'badge-notification unread-notifications',
-                                                rawLabel: unreadNotifications,
-                                                omitSpan: true }));
-          }
-
-          const unreadPMs = currentUser.get('unread_private_messages');
-          if (!!unreadPMs) {
-            contents.push(this.attach('link', { action: attrs.action,
-                                                className: 'badge-notification unread-private-messages',
-                                                rawLabel: unreadPMs,
-                                                omitSpan: true }));
-          }
-
-          return contents;
         }
       });
 
