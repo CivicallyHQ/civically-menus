@@ -30,12 +30,9 @@ export default {
             };
           }
 
-          let links = [
-            this.attach('link', {route: 'faq', label: 'faq'}),
-            this.attach('link', {route: 'about', label: 'about.simple_title'}),
-            this.attach('link', {route: 'tos', label: 'terms_of_service'}),
-            this.attach('link', {route: 'privacy', label: 'privacy'}),
-            this.attach('link', shortcutOpts),
+          const userLinks = [
+            this.attach('link', {route: 'groups', label: 'groups.index.title' }),
+            this.attach('link', {route: 'badges', label: 'badges.title' }),
             this.attach('link', {route: 'app.store', contents: () => {
               let html = `<span>${I18n.t('app.store.label')}`;
               if (!Discourse.SiteSettings.app_store_enabled) {
@@ -48,15 +45,40 @@ export default {
             }})
           ];
 
-          results.push(this.attach('menu-links', { heading: true, contents: () => {
-            return links;
-          }}));
+          results.push(this.attach('menu-links', {
+            name: 'user-links',
+            heading: true, contents: () => {
+              return userLinks;
+            }
+          }));
 
-          if (currentUser && currentUser.staff) {
-            results.push(this.attach('menu-links', { contents: () => {
-              const extraLinks = flatten(applyDecorators(this, 'admin-links', this.attrs, this.state));
-              return this.adminLinks().concat(extraLinks);
-            }}));
+          const generalLinks = [
+            this.attach('link', {route: 'faq', label: 'faq'}),
+            this.attach('link', {route: 'about', label: 'about.simple_title'}),
+            this.attach('link', {route: 'tos', label: 'terms_of_service'}),
+            this.attach('link', {route: 'privacy', label: 'privacy'}),
+            this.attach('link', shortcutOpts),
+          ];
+
+          const isStaff = currentUser && currentUser.staff;
+
+          results.push(this.attach('menu-links', {
+            name: 'general-links',
+            heading: true,
+            omitRule: !isStaff,
+            contents: () => {
+              return generalLinks;
+            }
+          }));
+
+          if (isStaff) {
+            results.push(this.attach('menu-links', {
+              omitRule: true,
+              contents: () => {
+                const extraLinks = flatten(applyDecorators(this, 'admin-links', this.attrs, this.state));
+                return this.adminLinks().concat(extraLinks);
+              }
+            }));
           }
 
           return results;
