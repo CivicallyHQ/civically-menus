@@ -10,11 +10,12 @@ export default {
       api.reopenWidget('header-notifications', {
         html(attrs, state) {
           let contents = this._super(attrs, state);
-          console.log(contents)
           contents = contents.filter((node) => {
-            return !node.properties || !node.properties.className || !(node.properties.className.indexOf('ring') > -1);
+            return !node.properties ||
+                   !node.properties.className ||
+                   !(node.properties.className.indexOf('ring') > -1);
           });
-          return contents
+          return contents;
         }
       });
 
