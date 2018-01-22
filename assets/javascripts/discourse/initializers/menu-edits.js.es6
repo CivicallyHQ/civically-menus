@@ -6,7 +6,18 @@ export default {
   name: 'menu-edits',
   initialize(){
 
-    withPluginApi('0.5', api => {
+    withPluginApi('0.8.12', api => {
+      api.reopenWidget('header-notifications', {
+        html(attrs, state) {
+          let contents = this._super(attrs, state);
+          console.log(contents)
+          contents = contents.filter((node) => {
+            return !node.properties || !node.properties.className || !(node.properties.className.indexOf('ring') > -1);
+          });
+          return contents
+        }
+      });
+
       api.reopenWidget('hamburger-menu', {
         panelContents() {
           const results = [];
