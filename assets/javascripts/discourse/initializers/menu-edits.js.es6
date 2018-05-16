@@ -47,11 +47,6 @@ export default {
             this.attach('link', {route: 'badges', label: 'badges.title' }),
             this.attach('link', {route: 'app.store', contents: () => {
               let html = `<span>${I18n.t('app.store.label')}`;
-              if (!Discourse.SiteSettings.app_store_enabled) {
-                html += ` <div class='coming-soon'>
-                          <span class='label'>${I18n.t('civically.coming_soon')}</span>
-                         </div>`;
-              }
               html += '</span>';
               return new RawHtml({ html });
             }})
