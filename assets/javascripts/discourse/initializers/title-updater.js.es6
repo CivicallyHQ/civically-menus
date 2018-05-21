@@ -39,15 +39,16 @@ export default {
 
         @computed('currentRoute')
         title(currentRoute) {
-          const isDiscovery = currentRoute.indexOf('discovery') > -1;
-          const isTopic = currentRoute.indexOf('topic') > -1;
-          const isUser = currentRoute.indexOf('/user/') > -1;
-          const isLoading = currentRoute.indexOf('loading') > -1;
-          const isAppStore = currentRoute.indexOf('app.store') > -1;
-          const isLanding = currentRoute.indexOf('landing') > -1;
           let title = null;
 
           if (currentRoute) {
+            const isDiscovery = currentRoute.indexOf('discovery') > -1;
+            const isTopic = currentRoute.indexOf('topic') > -1;
+            const isUser = currentRoute.indexOf('/user/') > -1;
+            const isLoading = currentRoute.indexOf('loading') > -1;
+            const isApp = currentRoute.indexOf('app') > -1;
+            const isLanding = currentRoute.indexOf('landing') > -1;
+
             if (isDiscovery || isTopic) {
               const discoveryController = this.get('discoveryController');
               const topicController = this.get('topicController');
@@ -59,9 +60,9 @@ export default {
               }
             }
 
-            if (isUser|| isLoading) title = '';
+            if (isUser || isLoading) title = '';
 
-            if (isAppStore) title = I18n.t('app.store.label');
+            if (isApp) title = `<a href='/app/store' class='p-text p-link'>${I18n.t('app.store.label')}</a>`;
 
             if (isLanding) title = `<a href='/start' class='p-text start'>${this.siteSettings.title}</a>`;
           }
