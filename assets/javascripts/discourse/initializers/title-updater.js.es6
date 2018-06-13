@@ -19,7 +19,10 @@ export default {
         currentRoute: Ember.computed.alias('router.router.currentRouteName'),
 
         buildArgs() {
-          return Object.assign(this._super(), { title: this.get('title') });
+          return $.extend(this._super(), {
+            title: this.get('title'),
+            route: this.get('currentRoute')
+          });
         },
 
         @observes('currentRoute')
