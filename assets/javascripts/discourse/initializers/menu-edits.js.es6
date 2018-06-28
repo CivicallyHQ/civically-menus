@@ -60,8 +60,10 @@ export default {
           }));
 
           const generalLinks = [
-            this.attach('link', {route: 'faq', label: 'faq'}),
             this.attach('link', {route: 'about', label: 'about.simple_title'}),
+            this.attach('link', {route: 'donate', label: 'discourse_donations.nav_item'}),
+            this.attach('link', {route: 'team', label: 'team.label'}),
+            this.attach('link', {route: 'faq', label: 'faq'}),
             this.attach('link', {route: 'tos', label: 'terms_of_service'}),
             this.attach('link', {route: 'privacy', label: 'privacy'}),
             this.attach('link', shortcutOpts),
