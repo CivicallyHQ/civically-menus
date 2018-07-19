@@ -65,6 +65,7 @@ export default {
             this.attach('link', {route: 'faq', label: 'faq'}),
             this.attach('link', {route: 'tos', label: 'terms_of_service'}),
             this.attach('link', {route: 'privacy', label: 'privacy'}),
+            this.attach('link', {route: 'landingOrganisations', label: 'landing.organisation.label'}),
             this.attach('link', shortcutOpts),
           ];
 
