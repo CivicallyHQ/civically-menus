@@ -13,15 +13,11 @@ export default {
     if (site.mobileView) return;
 
     withPluginApi('0.8.12', api => {
-
+      // 'router and currentRoute are set, and 'route' is added to header args, in site intitializer'
       api.modifyClass('component:site-header', {
-        router: Ember.inject.service('-routing'),
-        currentRoute: Ember.computed.alias('router.router.currentRouteName'),
-
         buildArgs() {
           return $.extend(this._super(), {
-            title: this.get('title'),
-            route: this.get('currentRoute')
+            title: this.get('title')
           });
         },
 
