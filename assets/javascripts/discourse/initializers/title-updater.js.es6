@@ -63,7 +63,7 @@ export default {
 
             if (isApp) title = `<a href='/app/store' class='p-text p-link'>${I18n.t('app.store.label')}</a>`;
 
-            if (isLanding) title = `<a href='/start' class='p-text start'>${this.siteSettings.title}</a>`;
+            if (isLanding) title = `<a href='/start#banner' class='p-text start'>${this.siteSettings.title}</a>`;
           }
 
           return title;
